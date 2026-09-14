@@ -625,18 +625,18 @@ body {
 
 
 /* =========================================================
-   UNIVERSAL SVG ARROW
+   UNIVERSAL CSS ARROW
    ========================================================= */
 
 .cta-arrow {
+    position: relative;
+
     width: 30px;
     height: 16px;
 
-    display: block;
+    display: inline-block;
 
     flex: 0 0 30px;
-
-    overflow: visible;
 
     color: currentColor;
 
@@ -644,17 +644,70 @@ body {
         transform 400ms var(--ease-out);
 }
 
-.cta-arrow path {
-    fill: none;
 
-    stroke: currentColor;
+/* Arrow shaft */
 
-    stroke-width: 1.5;
+.cta-arrow::before {
+    content: "";
 
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    position: absolute;
 
-    vector-effect: non-scaling-stroke;
+    left: 1px;
+    top: 8px;
+
+    width: 21px;
+    height: 1.5px;
+
+    background:
+        currentColor;
+
+    transform:
+        translateY(-50%);
+
+    transform-origin:
+        left center;
+}
+
+
+/* Arrow head */
+
+.cta-arrow::after {
+    content: "";
+
+    position: absolute;
+
+    right: 1px;
+    top: 8px;
+
+    width: 8px;
+    height: 8px;
+
+    border-top:
+        1.5px solid currentColor;
+
+    border-right:
+        1.5px solid currentColor;
+
+    transform:
+        translateY(-50%)
+        rotate(45deg);
+
+    transform-origin:
+        center;
+}
+
+
+/* =========================================================
+   UNIVERSAL ARROW TARGETS
+   ========================================================= */
+
+.nav-cta .cta-arrow,
+.primary-button .cta-arrow,
+.service-link .cta-arrow,
+.approach-link .cta-arrow,
+.contact-email .cta-arrow {
+    transition:
+        transform 400ms var(--ease-out);
 }
 
 
@@ -667,6 +720,17 @@ body {
     height: 16px;
 
     flex-basis: 25px;
+}
+
+.nav-cta .cta-arrow::before {
+    width: 18px;
+}
+
+.nav-cta .cta-arrow::after {
+    width: 7px;
+    height: 7px;
+
+    top: 8px;
 }
 
 .nav-cta:hover .cta-arrow {
@@ -686,60 +750,18 @@ body {
     flex-basis: 30px;
 }
 
+.primary-button .cta-arrow::before {
+    width: 21px;
+}
+
+.primary-button .cta-arrow::after {
+    width: 8px;
+    height: 8px;
+}
+
 .primary-button:hover .cta-arrow {
     transform:
         translateX(4px);
-}
-
-
-/* =========================================================
-   SERVICE ARROW
-   ========================================================= */
-
-.service-link .cta-arrow {
-    width: 28px;
-    height: 16px;
-
-    flex-basis: 28px;
-}
-
-.service-link:hover .cta-arrow {
-    transform:
-        translateX(3px);
-}
-
-
-/* =========================================================
-   APPROACH ARROW
-   ========================================================= */
-
-.approach-link .cta-arrow {
-    width: 29px;
-    height: 16px;
-
-    flex-basis: 29px;
-}
-
-.approach-link:hover .cta-arrow {
-    transform:
-        translateX(3px);
-}
-
-
-/* =========================================================
-   CONTACT ARROW
-   ========================================================= */
-
-.contact-email .cta-arrow {
-    width: 30px;
-    height: 16px;
-
-    flex-basis: 30px;
-}
-
-.contact-email:hover .cta-arrow {
-    transform:
-        translateX(3px);
 }
 
 
@@ -3403,7 +3425,7 @@ button:focus-visible {
         box-shadow 300ms ease;
 }
 
-.whatsapp-float .whatsapp-icon {
+.whatsapp-float svg {
     width:
         29px;
 
@@ -3422,8 +3444,17 @@ button:focus-visible {
     z-index:
         2;
 
+    flex-shrink:
+        0;
+
     overflow:
         visible;
+
+    -webkit-transform:
+        translateZ(0);
+
+    transform:
+        translateZ(0);
 
     transition:
         transform 400ms var(--ease-spring);
@@ -3438,7 +3469,11 @@ button:focus-visible {
         0 16px 38px rgba(37, 211, 102, .35);
 }
 
-.whatsapp-float:hover .whatsapp-icon {
+.whatsapp-float:hover svg {
+    -webkit-transform:
+        rotate(-8deg)
+        scale(1.08);
+
     transform:
         rotate(-8deg)
         scale(1.08);
@@ -3517,12 +3552,15 @@ button:focus-visible {
             54px;
     }
 
-    .whatsapp-float .whatsapp-icon {
+    .whatsapp-float svg {
         width:
             27px;
 
         height:
             27px;
+
+        display:
+            block;
     }
 }
 
@@ -3570,15 +3608,4 @@ button:focus-visible {
         filter:
             none !important;
     }
-}
-/* =========================================================
-   SAFARI SVG RENDERING SAFETY
-   ========================================================= */
-
-.cta-arrow,
-.whatsapp-icon {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
 }
