@@ -3432,9 +3432,6 @@ button:focus-visible {
     height:
         29px;
 
-    display:
-        block;
-
     fill:
         currentColor;
 
@@ -3443,18 +3440,6 @@ button:focus-visible {
 
     z-index:
         2;
-
-    flex-shrink:
-        0;
-
-    overflow:
-        visible;
-
-    -webkit-transform:
-        translateZ(0);
-
-    transform:
-        translateZ(0);
 
     transition:
         transform 400ms var(--ease-spring);
@@ -3470,10 +3455,6 @@ button:focus-visible {
 }
 
 .whatsapp-float:hover svg {
-    -webkit-transform:
-        rotate(-8deg)
-        scale(1.08);
-
     transform:
         rotate(-8deg)
         scale(1.08);
@@ -3558,9 +3539,6 @@ button:focus-visible {
 
         height:
             27px;
-
-        display:
-            block;
     }
 }
 
